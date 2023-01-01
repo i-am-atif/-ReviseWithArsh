@@ -1,0 +1,29 @@
+Bulls and Cows
+
+https://leetcode.com/problems/bulls-and-cows/description/
+
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        m={}
+        b=0
+        c=0
+        for i in secret:    
+            if i in m:
+                m[i]+=1
+            else:
+                m[i]=0
+     
+        for i in range(len(guess)):
+            if secret[i] == guess[i]:
+                b+=1
+                m[secret[i]]-=1
+    
+        for i in range(len(guess)):
+            if guess[i] in m and secret[i]!=guess[i] and m[guess[i]]>=0:
+                c+=1
+                m[guess[i]]-=1
+ 
+        ans=str(b)+"A"+str(c)+"B"
+        return ans
+
+        

@@ -1,0 +1,25 @@
+COMBINATION-SUM-III
+
+https://leetcode.com/problems/combination-sum-iii/description/
+
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+
+        def kkk(ans, ind, target, ds, combs, count, k):
+            if target==0:
+                if count==k:
+                    ans.append(list(ds))
+                return
+            for i in range(ind, 9):
+                if target<combs[i]:
+                    break
+
+                ds.append(combs[i])
+                kkk(ans, i+1, target-combs[i], ds, combs, count+1, k)
+                ds.pop()
+        ans=[]
+        combs=[1,2,3,4,5,6,7,8,9]
+        target=n
+        ds=[]
+        kkk(ans, 0, target, ds, combs, 0, k)
+        return ans
